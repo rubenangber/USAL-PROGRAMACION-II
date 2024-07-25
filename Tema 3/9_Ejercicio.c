@@ -56,5 +56,7 @@ int main(int argc, char const *argv[]) {
     }
     printf("\n");
 
+    free(vresultado);
+
     return 0;
 }
