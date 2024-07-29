@@ -82,14 +82,14 @@ int main() {
         insertarNodo(&cabeza, numeroAleatorio);
     }
 
-    printf("Lista enlazada inicial:\n");
+    printf("Lista enlazada inicial >> \n");
     imprimirLista(cabeza);
 
     while (1) {
         nodosIniciales = contarNodos(cabeza);
-        printf("Número de nodos al inicio: %d\n", nodosIniciales);
+        printf("Número de nodos al inicio >> %d\n", nodosIniciales);
 
-        printf("Introduce un número para eliminar (número negativo para salir): ");
+        printf("Introduce un número para eliminar (número negativo para salir) >> ");
         scanf("%d", &valor);
 
         if (valor < 0) {
@@ -99,8 +99,8 @@ int main() {
         eliminarNodos(&cabeza, valor);
 
         nodosFinales = contarNodos(cabeza);
-        printf("Número de nodos al final: %d\n", nodosFinales);
-        printf("Lista enlazada después de eliminación:\n");
+        printf("Número de nodos al final >> %d\n", nodosFinales);
+        printf("Lista enlazada después de eliminación >> \n");
         imprimirLista(cabeza);
     }
 
