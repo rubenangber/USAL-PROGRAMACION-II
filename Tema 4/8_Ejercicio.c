@@ -4,7 +4,7 @@
 
 typedef struct Nodo {
     int valor;
-    struct Nodo* siguiente;
+    struct Nodo* next;
 } Nodo;
 
 Nodo* crearNodo(int valor) {
@@ -14,7 +14,7 @@ Nodo* crearNodo(int valor) {
         exit(1);
     }
     nuevoNodo->valor = valor;
-    nuevoNodo->siguiente = NULL;
+    nuevoNodo->next = NULL;
     return nuevoNodo;
 }
 
@@ -24,10 +24,10 @@ void insertarNodo(Nodo** cabeza, int valor) {
         *cabeza = nuevoNodo;
     } else {
         Nodo* temp = *cabeza;
-        while (temp->siguiente != NULL) {
-            temp = temp->siguiente;
+        while (temp->next != NULL) {
+            temp = temp->next;
         }
-        temp->siguiente = nuevoNodo;
+        temp->next = nuevoNodo;
     }
 }
 
@@ -36,7 +36,7 @@ int contarNodos(Nodo* cabeza) {
     Nodo* temp = cabeza;
     while (temp != NULL) {
         contador++;
-        temp = temp->siguiente;
+        temp = temp->next;
     }
     return contador;
 }
@@ -45,7 +45,7 @@ void imprimirLista(Nodo* cabeza) {
     Nodo* temp = cabeza;
     while (temp != NULL) {
         printf("%d -> ", temp->valor);
-        temp = temp->siguiente;
+        temp = temp->next;
     }
     printf("NULL\n");
 }
@@ -56,16 +56,16 @@ void eliminarNodos(Nodo** cabeza, int valor) {
     while (temp != NULL) {
         if (temp->valor == valor) {
             if (prev == NULL) {
-                *cabeza = temp->siguiente;
+                *cabeza = temp->next;
             } else {
-                prev->siguiente = temp->siguiente;
+                prev->next = temp->next;
             }
             Nodo* nodoAEliminar = temp;
-            temp = temp->siguiente;
+            temp = temp->next;
             free(nodoAEliminar);
         } else {
             prev = temp;
-            temp = temp->siguiente;
+            temp = temp->next;
         }
     }
 }
@@ -106,7 +106,7 @@ int main() {
 
     while (cabeza != NULL) {
         Nodo* temp = cabeza;
-        cabeza = cabeza->siguiente;
+        cabeza = cabeza->next;
         free(temp);
     }
 

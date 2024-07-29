@@ -4,7 +4,7 @@
 
 typedef struct Nodo {
     int valor;
-    struct Nodo* siguiente;
+    struct Nodo* next;
 } Nodo;
 
 Nodo* crearNodo(int valor) {
@@ -14,22 +14,22 @@ Nodo* crearNodo(int valor) {
         exit(1);
     }
     nuevoNodo->valor = valor;
-    nuevoNodo->siguiente = NULL;
+    nuevoNodo->next = NULL;
     return nuevoNodo;
 }
 
 void insertarOrdenado(Nodo** cabeza, int valor) {
     Nodo* nuevoNodo = crearNodo(valor);
     if (*cabeza == NULL || (*cabeza)->valor >= valor) {
-        nuevoNodo->siguiente = *cabeza;
+        nuevoNodo->next = *cabeza;
         *cabeza = nuevoNodo;
     } else {
         Nodo* temp = *cabeza;
-        while (temp->siguiente != NULL && temp->siguiente->valor < valor) {
-            temp = temp->siguiente;
+        while (temp->next != NULL && temp->next->valor < valor) {
+            temp = temp->next;
         }
-        nuevoNodo->siguiente = temp->siguiente;
-        temp->siguiente = nuevoNodo;
+        nuevoNodo->next = temp->next;
+        temp->next = nuevoNodo;
     }
 }
 
@@ -38,7 +38,7 @@ int contarNodos(Nodo* cabeza) {
     Nodo* temp = cabeza;
     while (temp != NULL) {
         contador++;
-        temp = temp->siguiente;
+        temp = temp->next;
     }
     return contador;
 }
@@ -47,7 +47,7 @@ void imprimirLista(Nodo* cabeza) {
     Nodo* temp = cabeza;
     while (temp != NULL) {
         printf("%d -> ", temp->valor);
-        temp = temp->siguiente;
+        temp = temp->next;
     }
     printf("NULL\n");
 }
@@ -55,20 +55,20 @@ void imprimirLista(Nodo* cabeza) {
 void eliminarMayores(Nodo** cabeza, int valor) {
     while (*cabeza != NULL && (*cabeza)->valor > valor) {
         Nodo* temp = *cabeza;
-        *cabeza = (*cabeza)->siguiente;
+        *cabeza = (*cabeza)->next;
         free(temp);
     }
     if (*cabeza == NULL) {
         return;
     }
     Nodo* temp = *cabeza;
-    while (temp->siguiente != NULL) {
-        if (temp->siguiente->valor > valor) {
-            Nodo* nodoAEliminar = temp->siguiente;
-            temp->siguiente = temp->siguiente->siguiente;
+    while (temp->next != NULL) {
+        if (temp->next->valor > valor) {
+            Nodo* nodoAEliminar = temp->next;
+            temp->next = temp->next->next;
             free(nodoAEliminar);
         } else {
-            temp = temp->siguiente;
+            temp = temp->next;
         }
     }
 }
@@ -104,7 +104,7 @@ int main() {
 
     while (cabeza != NULL) {
         Nodo* temp = cabeza;
-        cabeza = cabeza->siguiente;
+        cabeza = cabeza->next;
         free(temp);
     }
 
